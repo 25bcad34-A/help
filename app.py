@@ -4,19 +4,16 @@ import os
 
 app = Flask(__name__)
 
-# Database connection (Railway compatible)
 db = mysql.connector.connect(
-    host=os.getenv("MYSQLHOST", "localhost"),
-    user=os.getenv("MYSQLUSER", "root"),
-    password=os.getenv("MYSQLPASSWORD", ""),
-    database=os.getenv("MYSQLDATABASE", "portfolio"),
-    port=int(os.getenv("MYSQLPORT"))
-
+    host=os.getenv("MYSQLHOST"),
+    user=os.getenv("MYSQLUSER"),
+    password=os.getenv("MYSQLPASSWORD"),
+    database=os.getenv("MYSQLDATABASE"),
+    port=int(os.getenv("MYSQLPORT", 30910))
 )
 
 cursor = db.cursor()
 
-# Create table if not exists
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS contacts (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -36,8 +33,10 @@ def contact():
     email = request.form['email']
     message = request.form['message']
 
-    sql = "INSERT INTO contacts (name, email, message) VALUES (%s, %s, %s)"
-    cursor.execute(sql, (name, email, message))
+    cursor.execute(
+        "INSERT INTO contacts (name,email,message) VALUES (%s,%s,%s)",
+        (name, email, message)
+    )
     db.commit()
 
     return redirect('/')
