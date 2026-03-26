@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Portfolio</title>
+    <title>Alwin Portfolio</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
@@ -10,22 +10,37 @@
     <h1>"Code your dreams into reality."</h1>
 </header>
 
-<section id="about">
+<!-- PHOTO -->
+<div class="photo-container">
+    <img src="{{ url_for('static', filename='profile.jpg') }}" alt="My Photo">
+</div>
+
+<section>
     <h2>About Me</h2>
-    <p>I am a passionate developer learning web development.</p>
+    <h3>Alwin</h3>
+    <p>
+        A dedicated first-year BCA student at Kristu Jayanti University, Ravi embarks on a journey of creativity and innovation through a compelling website portfolio project.
+        Eager to showcase his growing skills and passion for technology, his digital presence reflects both ambition and curiosity.
+        
+        With a strong interest in web development, problem-solving, and modern technologies, he continuously learns and builds projects.
+        
+        This portfolio is a step toward building a strong career in the tech world.
+    </p>
 </section>
 
-<section id="skills">
+<section>
     <h2>Skills</h2>
     <ul>
         <li>HTML</li>
         <li>CSS</li>
         <li>Python</li>
         <li>MySQL</li>
+        <li>Flask</li>
+        <li>Git & GitHub</li>
     </ul>
 </section>
 
-<section id="contact">
+<section>
     <h2>Contact Me</h2>
     <form action="/contact" method="POST">
         <input type="text" name="name" placeholder="Your Name" required>
